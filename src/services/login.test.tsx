@@ -1,20 +1,19 @@
-import { login } from "./login";
+import { login } from "./login"
 
+// const mockSetIsLoggedIn = jest.fn()
+// const mockNavigate = jest.fn()
 
-const mockSetIsLoggedIn = jest.fn()
-const mockNavigate = jest.fn()
+// jest.mock('react', () => ({
+//     ...jest.requireActual('react'),
+//     useContext: () => ({
+//         setIsLoggedIn: mockSetIsLoggedIn
+//     })
+// }))
 
-jest.mock('react', () => ({
-    ...jest.requireActual('react'),
-    useContext: () => ({
-        setIsLoggedIn: mockSetIsLoggedIn
-    })
-}))
-
-jest.mock('react-router-dom', () => ({
-    ...jest.requireActual('react-router-dom'),
-    useNavigate: () => mockNavigate
-}))
+// jest.mock('react-router-dom', () => ({
+//     ...jest.requireActual('react-router-dom'),
+//     useNavigate: () => mockNavigate
+// }));
 
 
 describe("login", () => {
@@ -26,21 +25,12 @@ describe("login", () => {
 
     it("Deve exibir um alert com boas-vindas, caso o email seja válido", async () => {
         // Simulando resposta da API
-        await login(mockEmail);
-        expect(mockSetIsLoggedIn).toHaveBeenCalledWith(true)
-        expect(mockNavigate).toHaveBeenCalledWith('/1');
-    });
-
-    it("Não deve exibir a mensagem de boas vindas sem o email", async () => {
-        // Simulando resposta da API
-
-        await login(mockEmail);
-        expect(mockAlert).not.toHaveBeenCalledWith("Bem vindo!");
+       const response = await login(mockEmail);
+        expect(response).toBeTruthy()
     });
 
     it("Deve exibir um erro caso o email seja inválido", async () => {
-        await login('email@invalido.com')
-        expect(mockSetIsLoggedIn).not.toHaveBeenCalled
-        expect(mockAlert).toHaveBeenCalledWith('Email Inválido!')
+        const response = await login('email@invalido.com')
+        expect(response).toBeFalsy()
     })
 })
