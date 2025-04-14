@@ -20,7 +20,8 @@ export const Header = ({ text }: HeaderProps) => {
           <Text fontSize='3x1'> {text}</Text>
         </Center>
       </Box>
-      <Spacer
+      <Spacer />
+      
     </Flex>
   )
 }
