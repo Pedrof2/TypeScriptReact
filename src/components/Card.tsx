@@ -12,8 +12,6 @@ export const Card = ({children} : any) => {
  
            <Box backgroundColor='#FFFFFF' borderRadius='25px' padding='15px'>
              {children}
- 
- 
            </Box>
          </Box>
        </div>

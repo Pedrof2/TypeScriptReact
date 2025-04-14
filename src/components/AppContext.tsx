@@ -12,10 +12,7 @@ interface IAppContext {
   export const AppContextProvider = ({ children }: any) => { //estado global
     const [isLoggedIn, setIsLoggedIn ] = useState<boolean>(false);
     
-    
     const user = 'Pedrinho'
-    
-  
   
     return (
       <AppContext.Provider value={{ user, isLoggedIn, setIsLoggedIn }} > 
