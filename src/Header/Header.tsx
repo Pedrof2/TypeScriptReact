@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Box, Button, Center, Flex, Spacer, Text } from "@chakra-ui/react"
 import { AppContext } from '../components/AppContext';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -9,19 +10,34 @@ interface HeaderProps {
 }
 
 export const Header = ({ text }: HeaderProps) => {
-  const context = useContext(AppContext)
-  console.log('retorno do header', context)
+  const { isLoggedIn, setIsLoggedIn } = useContext(AppContext)
+  const navigate = useNavigate()
+
+  const logout = () => {
+    setIsLoggedIn(false)
+    navigate('/')
+  }
 
   return (
-
-    <Flex >
+    <Flex backgroundColor='orange' padding='5px'>
       <Box>
         <Center>
           <Text fontSize='3x1'> {text}</Text>
         </Center>
       </Box>
-      <Spacer />
-      
+      {
+        isLoggedIn && ( //se for verdadeiro
+          <>
+            <Spacer />
+            <Button
+              onClick={() => logout()}
+            >
+              Sair
+            </Button>
+          </>
+        )
+      }
     </Flex>
+
   )
 }
