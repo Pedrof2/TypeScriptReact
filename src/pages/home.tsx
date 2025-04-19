@@ -5,6 +5,7 @@ import { Botao } from "../components/button";
 import { useNavigate } from "react-router-dom";
 import { login } from "../services/login";
 import { AppContext } from "../components/AppContext";
+import { changeLocalStorage } from "../services/storage";
 
 
 const Home = () => {
@@ -21,6 +22,7 @@ const Home = () => {
         }
 
         setIsLoggedIn(true)
+        changeLocalStorage ({login: true})
         navigate('/conta/1')
 
          }
